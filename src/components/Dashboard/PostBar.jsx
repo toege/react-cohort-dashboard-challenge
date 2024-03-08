@@ -2,10 +2,10 @@ import { useContext, useState } from "react";
 import ProfileLogo from "../Profile/ProfileLogo";
 import { MainContext } from "../../App";
 
-const initPost = {contactId:14, title: "Post", content:""}
 
 const PostBar = () => {
     const mainContext = useContext(MainContext)
+    const initPost = {contactId:mainContext.user.id, title: "Post", content:""}
     const [newPost, setNewPost] = useState(initPost);
 
     const handleChange = (e) => {

@@ -6,7 +6,7 @@ import ProfileLogo from "../../Profile/ProfileLogo";
 const PostAddComment = ( { post } ) => {
     const mainContext = useContext(MainContext)
     const { id } = post 
-    const initComment = {postId: id, contactId:14, content:""}
+    const initComment = {postId: id, contactId: mainContext.user.id, content:""}
     const [newComment, setNewComment] = useState(initComment);
 
     const handleChange = (e) => {

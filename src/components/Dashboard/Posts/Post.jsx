@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { MainContext } from "../../../App";
 import ProfileLogo from "../../Profile/ProfileLogo";
 import { PostComments } from "./PostComments";
+import { Link } from "react-router-dom";
 
 const Post = ( { post } ) => {
     const { title, contactId, content, id } = post
@@ -27,7 +28,9 @@ const Post = ( { post } ) => {
             </div>
             <div className="post-header">
                 {poster.firstName}{" "}{poster.lastName}<br/>
-                {title}
+                <Link to={`/post/${id}`}>
+                    {title}
+                </Link>
             </div>
             <div className="post-content">
                 {content}

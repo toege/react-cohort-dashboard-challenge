@@ -247,13 +247,21 @@ make the child components lay out using flex, vertically stacked in a column */
 }
 
 
+.post-page {
+  grid-area: 7 / 9 / -1 / 59;
+  z-index: 2;
+  overflow: auto;
+  background-color: #fff;
+  border-radius: 6px;
+}
+
+
 
 
 .profile-logo {
   width: 60px;
   height: 60px;
   border-radius: 50%; 
-  background-color: rgb(30, 153, 95); 
   color: white; /* Text color */
   display: flex;
   justify-content: center;
@@ -266,7 +274,6 @@ make the child components lay out using flex, vertically stacked in a column */
   width: 45px;
   height: 45px;
   border-radius: 50%; 
-  background-color: rgb(30, 153, 95); 
   color: white; /* Text color */
   display: flex;
   justify-content: center;

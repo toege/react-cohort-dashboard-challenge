@@ -5,6 +5,7 @@ import LeftMenu from './components/LeftMenu'
 import { Route, Routes } from 'react-router-dom'
 import Profile from './components/Profile/Profile'
 import { Dashboard } from './components/Dashboard/Dashboard'
+import PostPage from './components/Dashboard/Posts/PostPage.jsx'
 
 const MainContext = createContext()
 
@@ -24,7 +25,7 @@ function App() {
     return (<div>Loading...</div>)
   }
   if (!user) {
-    setUser(contacts[13])
+    setUser(contacts[10])
   }
 
 
@@ -37,6 +38,7 @@ function App() {
         <LeftMenu />
 
         <Routes>
+          <Route  path="/post/:id" element={<PostPage /> }/> 
           <Route  path="/profile" element={<Profile /> }/> 
           <Route  path="/" element={<Dashboard /> }/> 
         </Routes>
