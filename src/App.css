@@ -189,6 +189,14 @@ make the child components lay out using flex, vertically stacked in a column */
   padding: 1%;
 }
 
+.show-comments {
+  z-index: 3;
+  margin: 1%;
+  margin-left: 12%;
+  padding: 1%;
+  
+}
+
 .post-single-comment {
   margin-left: 2%;
   padding: .6%;

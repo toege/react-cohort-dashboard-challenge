@@ -1,15 +1,20 @@
 /* eslint-disable react/prop-types */
-import { createContext, useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import PostAddComment from "./PostAddComment";
 import PostComment from "./PostComment";
 import { MainContext } from "../../../App";
-
-const CommentContext = createContext()
 
 const PostComments = ( {post} ) => {
     const mainContext = useContext(MainContext)
     const [comments, setComments] = useState();
     const { id } = post
+    const [reduce, setReduce] = useState(true);
+    let displayedComments = null
+
+    const handleShowAll = (e) => {
+        e.preventDefault()
+        setReduce(!reduce)
+    }
 
     useEffect(() => {
         fetch(`https://boolean-api-server.fly.dev/toege/post/${id}/comment`)
@@ -17,26 +22,37 @@ const PostComments = ( {post} ) => {
         .then(setComments)        
     }, [mainContext.update]);
 
-    {comments && comments.map((comment, index) => (
-        < PostComment comment={comment} key={index}/>
-        ))}
+    if (comments && reduce) {
+
+
+        displayedComments = comments.slice(-3).map((comment, index) => (
+            < PostComment comment={comment} key={index}/>
+        ))
+    }
+    else if (comments) {
+        displayedComments = comments.map((comment, index) => (
+            < PostComment comment={comment} key={index}/>
+        ))
+    }
+
 
     return ( 
         <>
-        < CommentContext.Provider value = { {  } } >
             <div>
-                
-                {comments && comments.map((comment, index) => (
-                    < PostComment comment={comment} key={index}/>
-                    ))}
+                <div 
+                    className="show-comments"
+                    onClick={handleShowAll}>
+                    {(reduce && comments && (comments.length > 3) ) && "See previous comments"}
+                    {!reduce && "Hide previous comments"}
+                </div>
+                {displayedComments}
             </div>
             <div>
                 <PostAddComment post={post}/>
                 
             </div>
-        </CommentContext.Provider>
         </>
      );
 }
  
-export { PostComments, CommentContext };
+export { PostComments };
