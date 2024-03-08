@@ -194,7 +194,7 @@ make the child components lay out using flex, vertically stacked in a column */
   margin: 1%;
   margin-left: 12%;
   padding: 1%;
-  
+  color: #001ec6;  
 }
 
 .post-single-comment {
@@ -296,7 +296,6 @@ make the child components lay out using flex, vertically stacked in a column */
 .profile {
   grid-area: 7 / 9 / -1 / -1;
   z-index: -1;
-
 }
 
 .profile-header-text {
@@ -308,7 +307,7 @@ make the child components lay out using flex, vertically stacked in a column */
 .profile-category-text {
   font-family: Garamond, serif; 
   font-size: 1.5em;
-  margin-left: 0;
+  margin-left: 5%;
   margin-right: 0;
   font-weight: bold;
 }
@@ -319,9 +318,24 @@ make the child components lay out using flex, vertically stacked in a column */
 }
 
 .profile-content {
-  grid-area: 10 / 9 / -1 / 59;
+  grid-area: 12 / 9 / -1 / 59;  
+  display: grid;
   z-index: 1;
   background-color: rgb(255, 255, 255);
+  grid-template-columns: repeat(2, 1fr);
+  overflow: auto;
+  border-radius: 8px; 
+}
+
+.profile-content-left {
+  grid-column: 1;
+  z-index: 2;
+}
+
+.profile-content-right {
+  grid-column: 3  ;
+  background-color: #dca975;
+  z-index: 2;
 }
 
 .profile-name-header {
@@ -330,34 +344,25 @@ make the child components lay out using flex, vertically stacked in a column */
   background-color: rgb(199, 137, 137);
 }
 
-.profile-info {
-  grid-area: 15 / 9 / 19 / 34;
-  z-index: 2;
-  background-color: rgb(199, 137, 137);
+.profile-sub-text {
+  font-size: 1em;
+  margin-left: 5%;
+  margin-right: 0;
+  margin-top: 5%;
+  padding-top: 5%;
 }
 
-.profile-firstname {
-  grid-area: 19 / 9 / 25 / 34;
-  z-index: 2;
+.profile-inputs {
+  width: 90%;
+  padding: 12px 20px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  background-color: #cfd7e3;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-left: 5%;
+  margin-right: 5%;
 }
 
-
-
-/* make the sidebar fill the available height and be of fixed width */
-.sidebar {
-  width: 200px;
-  height: 100%;
-  /* fix the sidebar to be 100 viewport minus the header */
-  max-height: calc(100vh - 60px);
-}
-
-/* make the main fill the remaining width and the full height of the parent */
-.main {
-  flex-grow: 1;
-  /* if contents of main overflow from the height, add a scrollbar on main */
-  overflow-y: auto;
-  /* fix the sidebar to be 100 viewport minus the header */
-  max-height: calc(100vh - 60px);
-}
 
 

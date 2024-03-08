@@ -16,7 +16,7 @@ const LeftMenu = () => {
     const handleProfile = (e) => {
         e.preventDefault()
         mainContext.setIsHome(false)
-        navigator("/profile")
+        navigator(`/profile/${mainContext.user.id}`)
     }
 
 

@@ -39,7 +39,7 @@ function App() {
 
         <Routes>
           <Route  path="/post/:id" element={<PostPage /> }/> 
-          <Route  path="/profile" element={<Profile /> }/> 
+          <Route  path="/profile/:id" element={<Profile /> }/> 
           <Route  path="/" element={<Dashboard /> }/> 
         </Routes>
       </MainContext.Provider>
