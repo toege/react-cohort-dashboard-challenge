@@ -1,35 +1,42 @@
 /* eslint-disable react/prop-types */
+import { createContext, useContext, useEffect, useState } from "react";
 import PostAddComment from "./PostAddComment";
 import PostComment from "./PostComment";
+import { MainContext } from "../../../App";
+
+const CommentContext = createContext()
 
 const PostComments = ( {post} ) => {
+    const mainContext = useContext(MainContext)
+    const [comments, setComments] = useState();
+    const { id } = post
+
+    useEffect(() => {
+        fetch(`https://boolean-api-server.fly.dev/toege/post/${id}/comment`)
+        .then(response => response.json())
+        .then(setComments)        
+    }, [mainContext.update]);
+
+    {comments && comments.map((comment, index) => (
+        < PostComment comment={comment} key={index}/>
+        ))}
 
     return ( 
         <>
+        < CommentContext.Provider value = { {  } } >
             <div>
                 
-                {post.comment && post.comment.map((comment, index) => (
+                {comments && comments.map((comment, index) => (
                     < PostComment comment={comment} key={index}/>
                     ))}
-                {post.comment && console.log(post)}
             </div>
             <div>
                 <PostAddComment post={post}/>
                 
             </div>
+        </CommentContext.Provider>
         </>
-
      );
 }
  
-export default PostComments;
-
-
-/* 
-
-- legg til id i comments
-- fiks display av commmentarer
-- fiks navm og bruker logoer en enda ikke i reversert rekkefølge
-
-
-*/
+export { PostComments, CommentContext };

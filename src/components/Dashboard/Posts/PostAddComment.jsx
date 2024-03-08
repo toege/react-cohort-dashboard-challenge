@@ -3,10 +3,10 @@ import { useContext, useState } from "react";
 import { MainContext } from "../../../App";
 import ProfileLogo from "../../Profile/ProfileLogo";
 
-const initComment = {contactId:14, content:"", id: 0}
-
 const PostAddComment = ( { post } ) => {
     const mainContext = useContext(MainContext)
+    const { id } = post 
+    const initComment = {postId: id, contactId:14, content:""}
     const [newComment, setNewComment] = useState(initComment);
 
     const handleChange = (e) => {
@@ -17,23 +17,10 @@ const PostAddComment = ( { post } ) => {
     const handleComment = (e) => {
         e.preventDefault()
 
-        const newPost = post
-        const id = newPost.id
-
-        if (newPost.comments) {
-            newPost.comments = [...newPost.comments, newComment]
-        }
-        else {
-            setNewComment({...newComment, id: 1})
-            console.log(newComment)
-            newPost.comments = [newComment]  
-            console.log(newPost)
-        }
-
-        fetch(`https://boolean-api-server.fly.dev/toege/post/${id}`, {
-            method: 'PUT',
+        fetch(`https://boolean-api-server.fly.dev/toege/post/${id}/comment`, {
+            method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(newPost)
+            body: JSON.stringify(newComment)
             })
         .then(() => {
             setNewComment(initComment)

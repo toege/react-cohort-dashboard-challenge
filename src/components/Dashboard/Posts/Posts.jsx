@@ -1,29 +1,32 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { PostContext } from "../Dashboard";
 import Post from "./Post";
 
 const Posts = () => {
     const postContext = useContext(PostContext) 
-    const [revPosts, setRevPosts] = useState();
+    let postObjects = null
 
-    useEffect(() => {
-        setRevPosts([...postContext.posts.reverse()])
-    }, [postContext.posts]);
-
-    if (!revPosts) {
+    if (!postContext.posts) {
         return (<div>Loading...</div>)
-      }
+    }
+
+    postObjects = postContext.posts.map((post, index) => (
+        <div 
+            className="post"
+            key={index}>
+            <Post post={post}/>
+        </div>
+    ))
+
+    if (!postObjects) {
+        return (<div>Loading...</div>)
+    }
+
 
     return ( 
         <>
             <div className="posts">
-                {revPosts.map((post, index) => (
-                    <div 
-                        className="post"
-                        key={index}>
-                        <Post post={post}/>
-                    </div>
-                ))}
+                {postObjects.reverse()}
             </div>
         </>
      );

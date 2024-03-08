@@ -2,17 +2,17 @@
 import { useContext, useEffect, useState } from "react";
 import { MainContext } from "../../../App";
 import ProfileLogo from "../../Profile/ProfileLogo";
-import PostComments from "./PostComments";
+import { PostComments } from "./PostComments";
 
 const Post = ( { post } ) => {
-    const { title, contactId, content } = post
+    const { title, contactId, content, id } = post
     const mainContext = useContext(MainContext)
     const [poster, setPoster] = useState();
 
 
     useEffect(() => {
         if (mainContext.contacts) {
-            setPoster(mainContext.contacts.find(contact => contact.id === contactId))
+            setPoster(mainContext.contacts[contactId-1])
         }
     }, []);
 
@@ -20,9 +20,6 @@ const Post = ( { post } ) => {
         return (<div>Loading...</div>)
     }
     
-
-
-
     return ( 
         <>
             <div className="post-header">
