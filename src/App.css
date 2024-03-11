@@ -328,13 +328,12 @@ make the child components lay out using flex, vertically stacked in a column */
 }
 
 .profile-content-left {
-  grid-column: 1;
+  grid-column: 1 / 1;
   z-index: 2;
 }
 
 .profile-content-right {
-  grid-column: 3  ;
-  background-color: #dca975;
+  grid-column: 2 / 2  ;
   z-index: 2;
 }
 

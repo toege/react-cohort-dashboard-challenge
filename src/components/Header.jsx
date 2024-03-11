@@ -14,12 +14,6 @@ const Header = () => {
     navigator("/");
   };
 
-  const handleProfile = (e) => {
-    e.preventDefault();
-    mainContext.setIsHome(false);
-    navigator(`/profile/${mainContext.user.id}`);
-  };
-
   return (
     <>
       <header className="header"></header>
@@ -28,7 +22,7 @@ const Header = () => {
         <img src="src\assets\logo.svg" />
       </div>
 
-      <div className="header-right-element" onClick={handleProfile}>
+      <div className="header-right-element">
         {mainContext.user && <ProfileLogo profile={mainContext.user} small={false}/>}
       </div>
     </>

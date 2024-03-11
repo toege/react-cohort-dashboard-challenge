@@ -32,10 +32,10 @@ const Profile = () => {
         })
             
     }
-
-        if (!profile) {
-            return (<div>Loading...</div>)
-        }
+    
+    if (!profile) {
+        return (<div>Loading...</div>)
+    }
 
         return ( 
             <>
@@ -44,7 +44,6 @@ const Profile = () => {
                 <div className="profile-header-text">Profile</div>
             </div>
             <div className="profile-content">       
-                <form className="form" onSubmit={handleSubmit}>
                     <div className="profile-content-left">
                             <div className="profile-category-text">Account Info</div>
                             <label
@@ -124,6 +123,7 @@ const Profile = () => {
                     </div>
                     
                     <div className="profile-content-right">
+                        <form className="form" onSubmit={handleSubmit}></form>
                             <div className="profile-category-text">Address</div>
                             <label
                                 className="profile-sub-text">
@@ -222,12 +222,11 @@ const Profile = () => {
                             </label>
                             <br/>
                             <br/>
+                            <form className="form" onSubmit={handleSubmit}>
+                            <input className="form__submit" type="submit" value="Submit Survey!" />
+                            </form>
                     </div>
-                <input className="form__submit" type="submit" value="Submit Survey!" />
-                </form>
-            </div>
-            
-            
+            </div>    
         </>
      );
 }
